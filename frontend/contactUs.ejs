@@ -1,0 +1,121 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        Contact Us
+    </title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <%- include('partials/navbar.ejs')%>
+  
+        <div class="relative bg-white h-96">
+            <img alt="Background image with potted plants" class="w-full h-96 object-cover opacity-50" height="400"
+                src="./assets/images/contact-bg.jpg"
+                width="1200" />
+            <div class="m-9 absolute top-0 left-0 w-full h-64 flex items-center justify-center">
+                <h1 class="text-4xl font-bold text-gray-800">
+                    Contact Us
+                </h1>
+            </div>
+        </div>
+        <div class="container mx-auto py-12 px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div>
+                    <h2 class="text-xl font-semibold mb-4">
+                        Contact Details
+                    </h2>
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-map-marker-alt text-red-500 text-2xl mr-4">
+                        </i>
+                        <div>
+                            <h3 class="font-medium">
+                                Our Location
+                            </h3>
+                            <p>
+                                50th K.M. Stone, N.H. 1, Murthal, Haryana 131039
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-phone-alt text-red-500 text-2xl mr-4">
+                        </i>
+                        <div>
+                            <h3 class="font-medium">
+                                Call Us
+                            </h3>
+                            <p>
+                                01302484005
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-envelope text-red-500 text-2xl mr-4">
+                        </i>
+                        <div>
+                            <h3 class="font-medium">
+                                Our Email
+                            </h3>
+                            <p>
+                                info@example.com
+                                <br />
+                                support@example.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-xl font-semibold mb-4">
+                        Find Us
+                    </h2>
+                    <div class="mb-4">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3488.65465244417!2d77.0595328755153!3d29.027212275451543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390db10377463789%3A0xf697cc2d804b8b8e!2sDeenbandhu%20Chhotu%20Ram%20University%20Of%20Science%20And%20Technology%2C%20Murthal%20(Haryana)!5e0!3m2!1sen!2sin!4v1729321823648!5m2!1sen!2sin"
+                            allowfullscreen="" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <a class="text-red-500 flex items-center" href="https://www.google.com/maps/place/Deenbandhu+Chhotu+Ram+University+Of+Science+And+Technology,+Murthal+(Haryana)/@29.0272123,77.0595329,17z/data=!3m1!4b1!4m6!3m5!1s0x390db10377463789:0xf697cc2d804b8b8e!8m2!3d29.0272123!4d77.0621078!16s%2Fm%2F027zsxh!5m1!1e1?entry=ttu&g_ep=EgoyMDI0MTAxNi4wIKXMDSoASAFQAw%3D%3D">
+                        <i class="fas fa-map-marker-alt mr-2">
+                        </i>
+                        OPEN MAP NAVIGATION
+                    </a>
+                </div>
+                <div>
+                    <h2 class="text-xl font-semibold mb-4">
+                        Send Us a Message
+                    </h2>
+                    <form>
+                        <div class="mb-4">
+                            <input class="w-full p-3 border border-gray-300 rounded" placeholder="Name" type="text" />
+                        </div>
+                        <div class="mb-4">
+                            <input class="w-full p-3 border border-gray-300 rounded" placeholder="Email" type="email" />
+                        </div>
+                        <div class="mb-4">
+                            <input class="w-full p-3 border border-gray-300 rounded" placeholder="Subject"
+                                type="text" />
+                        </div>
+                        <div class="mb-4">
+                            <textarea class="w-full p-3 border border-gray-300 rounded h-32"
+                                placeholder="Message"></textarea>
+                        </div>
+                        <button class="bg-red-500 text-white px-6 py-3 rounded" type="submit">
+                            SEND MESSAGE
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- footer -->
+        <%- include('partials/footer.ejs')%>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Plants</title>    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const rangeInput = document.getElementById('priceRange');
+            const minPriceLabel = document.getElementById('minPrice');
+            const maxPriceLabel = document.getElementById('maxPrice');
+            const products = document.querySelectorAll('.product');
+
+            rangeInput.addEventListener('input', function () {
+                const maxPrice = parseInt(rangeInput.value);
+                maxPriceLabel.textContent = `₹${maxPrice}`;
+
+                products.forEach(product => {
+                    const productPrice = parseInt(product.getAttribute('data-price'));
+                    if (productPrice <= maxPrice) {
+                        product.classList.remove('hd');
+                    } else {
+                        product.classList.add('hd');
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        .hd{
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <%- include('partials/navbar.ejs')%>
+  
+    <div class="container mx-auto p-4">
+        <div class="flex">
+            <!-- Sidebar -->
+            <div class="w-1/4 p-4">
+                <!-- Filter by price -->
+                <div class="bg-white p-4 mb-4">
+                    <h2 class="text-lg font-semibold mb-2">Filter by price</h2>
+                    <div class="flex items-center justify-between">
+                        <span id="minPrice">₹10</span>
+                        <span id="maxPrice">₹120</span>
+                    </div>
+                    <input id="priceRange" class="w-full mt-2" type="range" min="10" max="120" value="120"/>
+                </div>
+                <!-- Categories -->
+                <div class="bg-white p-4 mb-4">
+                    <h2 class="text-lg font-semibold mb-2">Categories</h2>
+                    <ul>
+                        <a href="/store/Cactus">
+                            <li class="mb-2">Cactus </li>
+                        </a>
+                        <a href="/store/Plants">
+                            <li>Plants </li>
+                        </a>
+                        <a href="/store/gardening">
+                            <li>Gardening</li>
+                        </a>
+                        <a href="/store/Zade">
+                            <li>Zade</li>
+                        </a>
+                        <a href="/store/Palm">
+                            <li>Palm trees</li>
+                        </a>
+                        <a href="/store/Snake Plant">
+                            <li>Snake Plants</li>
+                        </a>
+                    </ul>
+                </div>
+                <!-- Hottest Deals -->
+                <div class="bg-white p-4">
+                    <h2 class="text-lg font-semibold mb-2">Hottest Deals</h2>
+                    <a href="/product/671ba255894077d952d69d46">
+                    <div class="relative">
+                        <img src="/assets/productImage/2.webp" alt="Cactus" class="w-full mb-2" width="300" height="200"/>
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">Sale</span>
+                    </div>
+                    <p>Cleistocactus</p>
+                    <p class="text-gray-500 line-through">₹50.00</p>
+                    <p class="text-red-500">₹30.00</p>
+                </div>
+            </div>
+            <!-- Main content -->
+            <div class="w-3/4 p-4">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <a href="/" class="text-gray-500">Home</a> / <a href="/store/<%- type%>" class="text-gray-500"><%- type %></a>
+                    </div>
+                </div>
+                <h1 class="text-3xl font-bold mb-4"><%- type%></h1>
+                    <!-- Plants  -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <% products.forEach(product => { %>
+                            <a href="/product/<%- product._id%>">
+                            <div class="bg-white p-4 product" data-price="<%= product.price %>"> 
+                                <img src="<%= product.imageUrl %>" alt="<%= product.name %>" class="w-full mb-2" width="300" height="300"/>
+                                <p class="text-gray-500"><%= product.category %></p>
+                                <h2 class="text-lg font-semibold"><%= product.name %></h2>
+                                <div class="flex items-center mb-2">
+                                    <% for (let i = 0; i < 5; i++) { %>
+                                        <i class="far fa-star <%= i < product.rating ? 'text-yellow-400' : 'text-gray-400' %>"></i>
+                                    <% } %>
+                                </div>
+                                <p>₹<%= product.price.toFixed(2) %></p>
+                            </div>
+                            </a>
+                        <% }); %>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- footer -->
+    <%- include('partials/footer.ejs')%>
+    
+</body>
+</html>

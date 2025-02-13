@@ -1,0 +1,226 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Nursery</title>
+
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .card {
+            transition: transform 0.5s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Navbar -->
+    <%- include('partials/navbar.ejs')%>
+
+        <!-- Hero Section -->
+        <section
+            class="bg-gradient-to-r from-gray-100 to-gray-200 p-10 rounded-b-3xl   bg-cover bg-bottom  bg-no-repeat"
+            style="background-image: url('assets/images/home_hero.jpg');">
+            <div class="h-[150px]"></div>
+
+            <div class="container mx-auto flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2">
+                    <p class="text-gray-600">
+                        Best Quality Plants
+                    </p>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+                        Amazing Variety Of Plants Starting Just ₹20
+                    </h1>
+                    <a href="/store">
+                        <button class="mt-5 bg-red-500 text-white px-6 py-3 rounded-full">
+                            Shop Now
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="h-[150px]"></div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-10">
+            <div class="container mx-auto flex flex-col md:flex-row justify-around text-center">
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-leaf text-green-500 text-3xl">
+                    </i>
+                    <p class="mt-2 font-semibold">
+                        Plants Collection
+                    </p>
+                    <p class="text-gray-600">
+                        Any plants for your space
+                    </p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-shipping-fast text-green-500 text-3xl">
+                    </i>
+                    <p class="mt-2 font-semibold">
+                        Free Shipping
+                    </p>
+                    <p class="text-gray-600">
+                        Free shipping on order
+                    </p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i class="fas fa-undo text-green-500 text-3xl">
+                    </i>
+                    <p class="mt-2 font-semibold">
+                        100% Money Back
+                    </p>
+                    <p class="text-gray-600">
+                        If the item didn't suit you
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collections Section -->
+        <section class="py-10 bg-white">
+            <div class="container mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-100 p-6 rounded-lg text-center card">
+                        <img alt="Beautiful plant varieties" class="w-full rounded-lg mb-4" height="200"
+                            src="https://storage.googleapis.com/a1aa/image/EhXU8wOBlTpCEV1nsJmR3VVGs29QAvCU2iRdTdNVe1fclwnTA.jpg"
+                            width="200" />
+                        <h3 class="font-semibold text-lg">
+                            Beautiful Plant Varieties
+                        </h3>
+                        <p class="text-gray-600">
+                            Discover our stunning collection of indoor and outdoor plants perfect for every home.
+                        </p>
+                        <a class="text-red-500 mt-2 inline-block" href="/store/Plants">
+                            See Collection
+                        </a>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg text-center card">
+                        <img alt="Trendy cactus varieties" class="w-full rounded-lg mb-4" height="200"
+                            src="https://storage.googleapis.com/a1aa/image/hUa1RvefB7nKH0c5lhecftY1TLdg7CDH8Ivzv0TiaJlAWCfcC.jpg"
+                            width="200" />
+                        <h3 class="font-semibold text-lg">
+                            Trendy Cactus Varieties
+                        </h3>
+                        <p class="text-gray-600">
+                            Explore our diverse selection of low-maintenance cacti for your modern living space.
+                        </p>
+                        <a class="text-red-500 mt-2 inline-block" href="/store/Cactus">
+                            See Collection
+                        </a>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg text-center card">
+                        <img alt="Gardening accessories" class="w-full rounded-lg mb-4" height="200"
+                            src="https://storage.googleapis.com/a1aa/image/i4we6aT1eJgus0itDYdCrbGAY8yyBYMdfBTHpp0At9H2KhPnA.jpg"
+                            width="200" />
+                        <h3 class="font-semibold text-lg">
+                            Gardening Accessories
+                        </h3>
+                        <p class="text-gray-600">
+                            Find all the essential tools and supplies to help your plants thrive and grow.
+                        </p>
+                        <a class="text-red-500 mt-2 inline-block" href="/store/gardening">
+                            Visit the Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Plants Section -->
+
+        <section class="py-10">
+            <div class="container mx-auto ">
+                <h2 class="text-3xl font-semibold text-center">
+                    Featured Plants
+                </h2>
+                <p class="text-gray-600 mt-2 text-center">
+                    Check out our selection of featured plants
+                </p>
+                <div class="container mx-auto p-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <% products.forEach(product=> { %>
+                            <a href="/product/<%- product._id%>">
+                                <div class="bg-white p-4 rounded-lg shadow relative card">
+                                    <% if(product.isOnSale) { %>
+                                        <span
+                                            class="absolute top-2 left-2 bg-white text-red-500 text-xs font-semibold px-2 py-1 rounded-full shadow">
+                                            Sale!
+                                        </span>
+                                        <% } %>
+                                            <img alt="<%= product.name %> in a <%= product.pot %> pot"
+                                                class="w-full h-64 object-cover rounded-t-lg" height="300"
+                                                src="<%= product.imageUrl %>" width="300" />
+                                            <div class="p-4">
+                                                <p class="text-gray-500">
+                                                    <%= product.category %>
+                                                </p>
+                                                <h3 class="text-lg font-semibold">
+                                                    <%= product.name %>
+                                                </h3>
+                                                <div class="flex items-center mt-2 mb-4">
+                                                    <% for(let i=0; i < 5; i++) { %>
+                                                        <i
+                                                            class="far fa-star <%= i < product.rating ? 'text-yellow-400' : 'text-gray-400' %>"></i>
+                                                        <% } %>
+                                                </div>
+                                                <% if(product.originalPrice) { %>
+                                                    <p class="text-lg font-semibold line-through text-gray-400">
+                                                        ₹<%= product.originalPrice %>
+                                                    </p>
+                                                    <% } %>
+                                                        <p class="text-lg font-semibold">
+                                                            ₹<%= product.price %>
+                                                        </p>
+                                            </div>
+                                </div>
+                            </a>
+                            <% }) %>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Help Section -->
+
+        <section class="py-10  bg-cover bg-bottom  bg-no-repeat"
+            style="background-image: url('assets/images/home_help.jpg');">
+            <div class="container mx-auto px-4">
+                <div class="max-w-2xl mx-auto text-center">
+                    <h2 class="text-3xl font-semibold mb-4">
+                        Need help in choosing the right plants?
+                    </h2>
+                    <p class="text-gray-600 mb-4">
+                        Our expert team is here to help you find the perfect plants for your space and lifestyle. Whether you're a beginner or an experienced plant parent, we've got you covered.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        We understand that choosing the right plant can be overwhelming. That's why we offer personalized guidance on plant care, lighting requirements, and maintenance tips. Let us help you create your own green paradise with confidence.
+                    </p>
+                    <a class="text-red-500 inline-block font-semibold hover:text-red-600 transition duration-300"
+                        href="/contactUs">
+                        <i class="fas fa-phone-alt mr-2"></i>
+                        Ask for Help
+                    </a>
+                </div>
+            </div>
+            <div class="h-[300px]"></div>
+        </section>
+
+        <!-- footer -->
+        <%- include('partials/footer.ejs')%>
+
+</body>
+
+</html>

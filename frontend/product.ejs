@@ -1,0 +1,112 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+        Product Page
+    </title>
+
+</head>
+
+<body class="bg-gray-100 font-roboto">
+    <!-- Navbar -->
+    <%- include('partials/navbar.ejs') %>
+
+        <div class="max-w-6xl mx-auto p-6 bg-white">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 p-4">
+                    <div class="relative">
+                        <img alt="Image of <%= prod.name %>" class="w-full" height="600" src="<%= prod.imageUrl %>"
+                            width="600" />
+                        <div class="absolute top-2 right-2 bg-white p-2 rounded-full shadow">
+                            <i class="fas fa-search text-gray-600"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 p-4">
+                    <p class="text-gray-500">
+                        <%= prod.category %>
+                    </p>
+                    <h1 class="text-3xl font-bold mb-4">
+                        <%= prod.name %>
+                    </h1>
+                    <p class="text-2xl font-bold text-gray-800 mb-2">
+                        ₹<%= prod.price %>
+                            <span class="text-sm font-normal text-gray-500">
+                                + Free Shipping
+                            </span>
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <%= prod.description %>
+                    </p>
+                    <div class="flex items-center mb-4">
+                        <form action="/user/cart/add/" method="post">
+                            <input type="hidden" name="id" value="<%- prod.id%>">
+                            <input type="hidden" name="name" value="<%- prod.name%>">
+                            <button type="submit" class="bg-red-500 text-white px-6 py-2 rounded">
+                                ADD TO CART
+                            </button>
+                        </form>
+                    </div>
+                    <p class="text-gray-500">
+                        Category: <%= prod.category %>
+                    </p>
+                </div>
+            </div>
+            <div class="mt-8">
+                <div class="border-b border-gray-300 mb-4">
+                </div>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold mb-4">
+                    Related products
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-5 gap-6">
+                    <% similarProducts.forEach(product=> { %>
+                        <a href="/product/<%- product._id%>">
+                            <div class="bg-white p-4 border border-gray-200 rounded">
+                                <div class="relative">
+                                    <img alt="Image of <%= product.name %>" class="w-full mb-4" height="300"
+                                        src="<%= product.imageUrl %>" width="300" />
+                                    <% if (product.isOnSale) { %>
+                                        <span
+                                            class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                                            Sale!
+                                        </span>
+                                        <% } %>
+                                </div>
+                                <p class="text-gray-500">
+                                    <%= product.category %>
+                                </p>
+                                <h3 class="text-lg font-bold mb-2">
+                                    <%= product.name %>
+                                </h3>
+                                <div class="flex items-center mb-2">
+                                    <% for (let i=0; i < 5; i++) { %>
+                                        <i
+                                            class="fas fa-star <%= i < product.rating ? 'text-yellow-500' : 'text-gray-300' %>"></i>
+                                        <% } %>
+                                </div>
+                                <% if (product.isOnSale) { %>
+                                    <p class="text-gray-500 line-through">
+                                        ₹<%= product.originalPrice %>
+                                    </p>
+                                    <% } %>
+                                        <p class="text-xl font-bold text-gray-800">
+                                            ₹<%= product.price %>
+                                        </p>
+                            </div>
+                        </a>
+                        <% }); %>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- footer -->
+        <%- include('partials/footer.ejs') %>
+</body>
+</body>
+
+</html>

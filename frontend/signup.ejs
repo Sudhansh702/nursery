@@ -1,0 +1,107 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="stylesheet" href="/frontend/css/output.css">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <%- include('partials/navbar.ejs')%>
+
+
+        <div class="bg-gray-100 flex justify-center items-center min-h-screen">
+            <div class="w-full max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md">
+                <div class="flex justify-center mb-6">
+
+
+                </div>
+                <div id="loginSection">
+                    <h2 class="text-4xl font-bold text-center mb-4">Login</h2>
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                        <form id="loginForm" action="/user/login" method="POST">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2" for="login-username">Username or
+                                    email
+                                    address <span class="text-red-500">*</span></label>
+                                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg" type="text"
+                                    id="login-username" name="username" required>
+                            </div>
+                            <div class="mb-4 relative">
+                                <label class="block text-gray-700 font-semibold mb-2" for="login-password">Password
+                                    <span class="text-red-500">*</span></label>
+                                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg" type="password"
+                                    id="login-password" name="password" required>
+                                <i class="fas fa-eye absolute right-3 top-3 text-gray-500"></i>
+                            </div>
+                            <button type="submit"
+                                class="w-full bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600 transition duration-200">LOG
+                                IN</button>
+                            <button id="registerBtn"
+                                class=" text-gray-800 py-2 px-4 rounded-lg font-normal hover:translate-x-1 transition duration-200">Don't have an Account?..</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="registerSection" class="hidden">
+                    <h2 class="text-4xl font-bold text-center mb-4">Register</h2>
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+
+                        <form id="registerForm" action="/user/register" method="POST">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2" for="register-username">Name
+                                    <span class="text-red-500">*</span></label>
+                                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg" type="text"
+                                    id="register-username" name="username" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-semibold mb-2" for="register-email">Email address
+                                    <span class="text-red-500">*</span></label>
+                                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg" type="email"
+                                    id="register-email" name="email" required>
+                            </div>
+                            <div class="mb-4 relative">
+                                <label class="block text-gray-700 font-semibold mb-2" for="register-password">Password
+                                    <span class="text-red-500">*</span></label>
+                                <input class="w-full px-3 py-2 border border-gray-300 rounded-lg" type="password"
+                                    id="register-password" name="password" required>
+                                <i class="fas fa-eye absolute right-3 top-3 text-gray-500"></i>
+                            </div>
+                            <p class="text-gray-500 text-sm mb-4">Your personal data will be used to support your
+                                experience
+                                throughout this website, to manage access to your account, and for other purposes
+                                described
+                                in
+                                our privacy policy.</p>
+                            <button type="submit"
+                                class="w-full bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600 transition duration-200">REGISTER</button>
+                            <button id="loginBtn"
+                                class=" text-gray-800 py-2 px-4 rounded-lg font-normal hover:translate-x-1 transition duration-200">Already have an Account?..</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById('loginBtn').addEventListener('click', function () {
+                document.getElementById('loginSection').classList.remove('hidden');
+                document.getElementById('registerSection').classList.add('hidden');
+            });
+
+            document.getElementById('registerBtn').addEventListener('click', function () {
+                document.getElementById('registerSection').classList.remove('hidden');
+                document.getElementById('loginSection').classList.add('hidden');
+            });
+        </script>
+        <!-- footer -->
+        <%- include('partials/footer.ejs')%>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!-- Navbar -->
+<%- include('partials/navbar.ejs')%>
+<body class="bg-gray-100">
+  
+    <div class="max-w-4xl mx-auto p-6 bg-white mt-10">
+       
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h2 class="text-xl font-semibold mb-4">Billing details</h2>
+                <form id="checkout-form" action="/user/place-order" method="POST">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">First name <span class="text-red-500">*</span></label>
+                            <input type="text" name="firstname" class="w-full border border-gray-300 p-2 rounded" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Last name <span class="text-red-500">*</span></label>
+                            <input type="text" name="lastname" class="w-full border border-gray-300 p-2 rounded" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-1">Country / Region <span class="text-red-500">*</span></label>
+                        <select name="country" class="w-full border border-gray-300 p-2 rounded" required>
+                            <option value="India">India</option>
+                            <option value="United States">United States</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Germany">Germany</option>
+                            <option value="France">France</option>
+                            <option value="Japan">Japan</option>
+                            <option value="China">China</option>
+                            <option value="Brazil">Brazil</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-1">Street address <span class="text-red-500">*</span></label>
+                        <input type="text" name="street_address" placeholder="House number and street name" class="w-full border border-gray-300 p-2 rounded mb-2" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-1">Town / City <span class="text-red-500">*</span></label>
+                        <input type="text" name="city" class="w-full border border-gray-300 p-2 rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-1">State <span class="text-red-500">*</span></label>
+                        <input type="text" name="state" class="w-full border border-gray-300 p-2 rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-1">PIN Code <span class="text-red-500">*</span></label>
+                        <input type="text" name="pin_code" class="w-full border border-gray-300 p-2 rounded" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-1">Phone <span class="text-red-500">*</span></label>
+                        <input type="text" name="phone" class="w-full border border-gray-300 p-2 rounded" required>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <h2 class="text-xl font-semibold mb-4">Your order</h2>
+                <div class="border border-gray-300 p-4 rounded mb-4">
+                    <div class="flex justify-between mb-2">
+                        <span class="font-medium">Product</span>
+                        <span class="font-medium">Subtotal</span>
+                    </div>
+                    <% let subtotal = 0 %>
+                    <% products.forEach(product => { %>
+                        <div class="flex justify-between mb-2">
+                            <span><%= product.name %></span>
+                            <span>₹<%= product.price%></span>
+                        </div>
+                        <% subtotal += product.price %>
+                    <% }) %>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-medium">Subtotal</span>
+                        <span>₹<%= subtotal.toFixed(2) %></span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-medium">Shipping</span>
+                        <span>Free shipping</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span class="font-medium">Total</span>
+                        <span>₹<%= (subtotal).toFixed(2) %></span>
+                    </div>
+                </div>               
+                <div class="border border-gray-300 p-4 rounded mb-4">
+                    <h3 class="font-medium mb-2">Cash on delivery</h3>
+                    <button class="w-full bg-gray-200 text-gray-700 p-2 rounded mb-4">Pay with cash upon delivery.</button>
+                    <p class="text-sm text-gray-600">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+                </div>
+                <button type="submit" form="checkout-form" class="w-full bg-red-500 text-white p-2 rounded">PLACE ORDER</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- footer -->
+    <%- include('partials/footer') %>
+</body>
+</html>
